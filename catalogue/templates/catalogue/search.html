@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Catalogue</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% load staticfiles %}
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'catalogue/images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'catalogue/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'catalogue/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'catalogue/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'catalogue/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'catalogue/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'catalogue/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'catalogue/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body>
+	<div class="topnav" method="GET" action="{% url 'search' %}">
+		<h1>Component Catalogue</h1>
+		<input type="text" name="search" placeholder="Search..">
+	</div>
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+					<div class="table">
+
+						<div class="row header">
+							<div class="cell">
+								Component Name
+							</div>
+							<div class="cell">
+								Version
+							</div>
+							<div class="cell">
+								Language
+							</div>
+							<div class="cell">
+								Download URL
+							</div>
+						</div>
+						{% if search_comp %}
+						{% for c in search_comp %}
+						<div class="row">
+							<div class="cell" data-title="Component Name">
+								{{ c.name }}
+							</div>
+							<div class="cell" data-title="Version">
+								{{ c.version }}
+							</div>
+							<div class="cell" data-title="Language">
+								{{ c.primary_language }}
+							</div>
+							<div class="cell" data-title="Download URL">
+								<a href='{{ c.download_URL }}' style="color:blue">{{ c.name }}</a>
+							</div>
+						</div>
+						{% endfor %}
+						{% else %}
+						<p>No Results Found</p>
+						{% endif %}
+					</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+</body>
+</html>
